@@ -13,15 +13,22 @@
 --- sozdaet bazu dannyh 
 ```
 
+``` sql
 "CREATE TABLE name_of_table (
     name_of_column1 data_type constraint,
     name_of_column2 data_type constraint,
     ...
-);" - sozdaet tablicu s polyami 
+);" 
+``` 
+--- sozdaet tablicu s polyami 
 
 
 
-INSERT INTO name_of_table (name_of_column) VALUES (val1, val2); - dobavlyaet zapis v tablicu 
+```INSERT INTO name_of_table (name_of_column) VALUES (val1, val2);```
+--- dobavlyaet zapis v tablicu 
 
-SELECT * FROM name_of_table; - dostaet vse polyai zapisi is tablicy 
-SELECT name_of_column1, name_of_column2 FROM name_of_table; - dostaet tolko ukazannye stalbcy iz tablicu 
+```SELECT * FROM name_of_table;```
+ --- dostaet vse polyai zapisi is tablicy 
+
+```SELECT name_of_column1, name_of_column2 FROM name_of_table;```
+ --- dostaet tolko ukazannye stalbcy iz tablicu 
