@@ -141,12 +141,12 @@ create table patient (
 );
 
 create table doctor_patient (
-    doctor_id int
-    patient_id int
+    doctor_id int,
+    patient_id int,
 
-    constraint fk_doctor foreign key doctor_id references doctor(id), 
+    constraint fk_doctor foreign key (doctor_id) references doctor(id), 
     
-    constraint fk_patient foreign key patient_id references patient(id), 
+    constraint fk_patient foreign key (patient_id) references patient(id)
 );
 ```
 
