@@ -101,7 +101,8 @@ create table country (
     id serial primary key,
     title varchar(50),
     gimn text,
-    flad_id int unique foreign key fk_country_flag references flag(id)
+    flad_id int unique,
+    constraint fk_country_flag foreign key flag_id references flag(id)
 );
 ```
 ### one to many 
@@ -117,11 +118,13 @@ create table post (
     title varchar(100),
     body text,
     photo text,
-    account_id int foreign key fk_account_post references account(id)
+    account_id int, 
+    
+    constraint fk_account_post foreign key account_id references account(id)
 );
 
 ```
-### one to many 
+### many to many 
 
 ```sql
 create table doctor (
@@ -139,11 +142,12 @@ create table patient (
 
 create table doctor_patient (
     doctor_id int
-    foreign key fk_doctor references doctor(id), 
     patient_id int
-    foreign key fk_patient references patient(id), 
-);
 
+    constraint fk_doctor foreign key doctor_id references doctor(id), 
+    
+    constraint fk_patient foreign key patient_id references patient(id), 
+);
 ```
 
 
