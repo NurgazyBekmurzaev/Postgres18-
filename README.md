@@ -153,7 +153,8 @@ create table doctor_patient (
 
 
 
-# JOIN
+# JOIN (teoria)
+
 > JOIN - instrukcia, kotoraya pozvolyaet v zaprosah SELECT
 brat dannye iz neskolkih tablic
 > INNER JOIN (JOIN) - kogda dostayutsya tolko te zapisi, 
@@ -163,11 +164,38 @@ u kotoryh est polnaya svyaz
 > LEFT JOIN - kogda dostayutsya vse zapisi s levoi tablicy i takje te zapisi s polnoi svyazyu 
 > RIGHT JOIN - kogda dostayutsya vse zapisi s pravoi tablicy i takje te zapisi s polnoi svyazyu 
 
+## JOIN (praktika)
 ```sql
 SELECT author.first_name, book.title
 FROM author
 JOIN book ON author.id = book.author_id;
 ```
+
+### one to one 
+
+```sql
+select country.title, country.gimn, flag.photo
+from country 
+join flag
+on country.flag_id = flag.id;
+```
+### one to many 
+```sql
+select account.nik_name, post.title, post.photo
+from account
+join post
+on account.id = post.account_id;
+```
+### many to many
+
+```sql
+select doctor.first_name as Doctor, 
+        patient.first_name as Patient
+from doctor
+join doctor_patient as dp on doctor.id = dp.doctor_id
+join patient on patient.id = dp.patient_id;
+```
+
 ```sql
 select first_name, last_name from customer order by first_name asc;
 select first_name, last_name from customer order by first_name desc;
