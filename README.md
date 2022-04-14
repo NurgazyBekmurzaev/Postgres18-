@@ -60,15 +60,94 @@ CREATE TABLE author (
     id serial primary key,
     first_name varchar(50),
     last_name varchar(50),
-)
+);
 
 CREATE TABLE book (
     id serial,
     title varchar(100),
     puplished year
     author_id int foreign key references author (id)
-)
+);
 ```
+
+## Vidy svyazi (teoria)
+
+> One to one - (odin k odnomu)
+naprimer:
+* odin avtor  - odna biografia
+* odin flag - odna strana
+* odin chelovek - odna serdce
+
+> one to many - (odin ko mnogim)
+naprimer:
+* odin chelovek - mnogo kletok, no u odnoi kletki tolko odin chelovek
+* odni roditeli - mnogo detei, no u odnogo rebenka tolko odni roditeli
+* odin akaunt mnogo postov, no u odnogo posta tolko odin akaunt
+* odin makers - mnogo mentorov, no u odnogo mentora tolko odin makers
+
+> many to many - (mnogie ko mnogim)
+* u odnogo cheloveka mnogo druzei i u odnogo druga mnogo drugih druzei
+* u doktora mnogo pacientov i u pacienta mnogo doktorov
+* u polzovatelya mnogo socsetei i u odnoi secseti mnogo polzovatelei
+
+## vidy svyazi (praktika)
+### one to one 
+```sql
+create table flag (
+    id serial primary key,
+    photo text
+)
+create table country (
+    id serial primary key,
+    title varchar(50),
+    gimn text,
+    flad_id int unique foreign key fk_country_flag references flag(id)
+);
+```
+### one to many 
+
+```sql
+create table account (
+    id serial primary key,
+    nick_name varchar(25) unique,
+    u_password varchar(255)
+)
+create table post (
+    id serial primary key,
+    title varchar(100),
+    body text,
+    photo text,
+    account_id int foreign key fk_account_post references account(id)
+);
+
+```
+### one to many 
+
+```sql
+create table doctor (
+    id serial primary key,
+    first_name varchar(25),
+    last_name varchar(50)
+);
+
+create table patient (
+    id serial primary key,
+    first_name varchar(25),
+    last_name varchar(50)
+ 
+);
+
+create table doctor_patient (
+    doctor_id int
+    foreign key fk_doctor references doctor(id), 
+    patient_id int
+    foreign key fk_patient references patient(id), 
+);
+
+```
+
+
+
 
 # JOIN
 > JOIN - instrukcia, kotoraya pozvolyaet v zaprosah SELECT
@@ -83,7 +162,7 @@ u kotoryh est polnaya svyaz
 ```sql
 SELECT author.first_name, book.title
 FROM author
-JOIN book ON author.id = book.author_id
+JOIN book ON author.id = book.author_id;
 ```
 ```sql
 select first_name, last_name from customer order by first_name asc;
