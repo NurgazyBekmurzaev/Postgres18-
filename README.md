@@ -102,7 +102,7 @@ create table country (
     title varchar(50),
     gimn text,
     flad_id int unique,
-    constraint fk_country_flag foreign key flag_id references flag(id)
+    constraint fk_country_flag foreign key (flag_id) references flag(id)
 );
 ```
 ### one to many 
@@ -120,7 +120,7 @@ create table post (
     photo text,
     account_id int, 
     
-    constraint fk_account_post foreign key account_id references account(id)
+    constraint fk_account_post foreign key (account_id) references account(id)
 );
 
 ```
