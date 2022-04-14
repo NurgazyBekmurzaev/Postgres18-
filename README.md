@@ -1,3 +1,5 @@
+# Slash commands
+
 * `\с` - показывает в какой бд мы находимся и через какого юзера
 
 * `\с name_of_db` - переключается к этой бд
@@ -10,7 +12,7 @@
 
 * `\q` - выход
 
-
+# sozdanie BD i tablicy
 ```sql
 CREATE DATABASE name_of_db; 
 -- создает базу данных
@@ -25,12 +27,15 @@ CREATE TABLE name_of_table (
 -- создает таблицу с полями
 ```
 
+# zapolnenie tablic
+
 ```sql
 INSERT INTO name_of_table (name_of_column1, name_of_column2) 
 VALUES (val1, val2);
 -- добавляет запись в таблицу
 ```
 
+# vyvod dannyh iz tablicy
 ```sql
 SELECT * FROM name_of_table; 
 -- достает все поля и записи из таблицы
@@ -38,6 +43,8 @@ SELECT * FROM name_of_table;
 SELECT name_of_column1, name_of_column2 FROM name_of_table; 
 -- достает только указанные столбцы из таблицы
 
+# svyazi 
+## pk i fk
 > primary key (pk)- pervichnyi klyuch
 > eto ogranichenie, kotorye my ukazyvaem na te polya, 
 kotorye doljny byt unikalnymi dlya togo
@@ -62,6 +69,8 @@ CREATE TABLE book (
     author_id int foreign key references author (id)
 )
 ```
+
+# JOIN
 > JOIN - instrukcia, kotoraya pozvolyaet v zaprosah SELECT
 brat dannye iz neskolkih tablic
 > INNER JOIN (JOIN) - kogda dostayutsya tolko te zapisi, 
@@ -76,4 +85,39 @@ SELECT author.first_name, book.title
 FROM author
 JOIN book ON author.id = book.author_id
 ```
+```sql
+select first_name, last_name from customer order by first_name asc;
+select first_name, last_name from customer order by first_name desc;
+select first_name, length(first_name) as len from customer order by len desc;
+select customer.customer_id, first_name, last_name, amount, payment_date from customer inner join payment on payment.customer_id = customer.customer_id order by payment_date;
+```
 
+# Import i export dannyh 
+write from to db
+```bash
+psql db_name  < file.sql 
+```
+write from db to file
+```bash
+pg_dump db_name > file.sql
+```
+
+
+
+
+<!-- task1 -->
+
+<!-- SELECT plaintext FROM wordform limit 10; -->
+
+<!-- task2 -->
+
+<!-- SELECT plaintext FROM wordform WHERE plaintext LIKE 'a%'; -->
+
+
+<!-- task3  -->
+
+<!-- SELECT title, genretype FROM work WHERE genretype = 'p'; -->
+
+<!-- task4 -->
+
+<!-- SELECT AVG( totalparagraphs ) AS avg FROM work where genretype = 't'; -->
